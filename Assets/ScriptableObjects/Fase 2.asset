@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffaad9de4ea44764c87dcde1bf88637b, type: 3}
+  m_Name: Fase 2
+  m_EditorClassIdentifier: 
+  BGLetter: {fileID: 21300000, guid: 82b0e42e3a9ef2c4fa0b4331d84790df, type: 3}
+  textLetter: "Esta casa est\xE1 amaldi\xE7oada por uma trag\xE9dia do passado, cujos
+    segredos obscuros ainda pairam em seus c\xF4modos.\nRecomendamos que n\xE3o tente
+    desvendar nenhum mist\xE9rio e tome cuidado com o seu reflexo no espelho."
