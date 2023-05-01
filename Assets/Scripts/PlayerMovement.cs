@@ -5,20 +5,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : Singleton<PlayerMovement>
 {
+    public delegate void    ReadLetter();
+    public event ReadLetter OnReadLetter;
     [SerializeField] float  moveSpeed = 3f;
     [SerializeField] int    numberOfLettersinGame = 10;
+    Animator                myAnimator;
     int[]                   lettersReadArray;
     int                     lettersRead;
     Rigidbody2D             myRigidBody;
     Vector2                 moveInput;
     float                   defaultMoveSpeed;
-    Interactible            interactible;
+    float                   defaultAnimationSpeed;
+    [SerializeField] Interactible            interactible;
     bool                    isReadingLetter = false;
     bool                    isFlipped = false;
+    bool                    isOnStair = false;
+    AreaExit                stairExit;
+
     protected override void Awake()
     {
         base.Awake();
         myRigidBody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
     }
 
     void Start()
@@ -26,6 +34,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         lettersReadArray = new int[numberOfLettersinGame];
         lettersRead = 0;
         defaultMoveSpeed = moveSpeed;
+        defaultAnimationSpeed = myAnimator.speed;
     }
 
     void FixedUpdate()
@@ -41,11 +50,12 @@ public class PlayerMovement : Singleton<PlayerMovement>
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        if (moveInput.x < 0 && isFlipped || moveInput.x > 0 && !isFlipped)
+        if (moveInput.x > 0 && isFlipped || moveInput.x < 0 && !isFlipped)
         {
             isFlipped = !isFlipped;
             transform.localScale = new Vector2(-transform.localScale.x, 1f);
         }
+        myAnimator.SetBool("isWalking", Mathf.Abs(moveInput.x) > Mathf.Epsilon);
     }
 
     void OnRun(InputValue value)
@@ -53,10 +63,12 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (value.isPressed)
         {
             moveSpeed *= 2;
+            myAnimator.speed *= 1.5f;
         }
         else
         {
             moveSpeed = defaultMoveSpeed;
+            myAnimator.speed = defaultAnimationSpeed;
         }
     }
 
@@ -75,9 +87,19 @@ public class PlayerMovement : Singleton<PlayerMovement>
                 if (lettersReadArray[interactible.GetIndex()]++ == 0)
                 {
                     lettersRead++;
+                    OnReadLetter();
                 }
             }
         }
+        if (isOnStair)
+        {
+            stairExit.Transition();
+        }
+    }
+
+    public int GetLettersRead()
+    {
+        return lettersRead;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -85,6 +107,29 @@ public class PlayerMovement : Singleton<PlayerMovement>
         if (other.tag == "Interactible")
         {
             interactible = other.GetComponent<Interactible>();
+        }
+        else if (other.tag == "Stair")
+        {
+            Debug.Log("IsOnStair");
+            isOnStair = true;
+            stairExit = other.GetComponent<AreaExit>();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Stair")
+        {
+            isOnStair = false;
+        }
+        else if (other.tag == "Interactible")
+        {
+            if (isReadingLetter)
+            {
+                interactible.StopReading();
+                isReadingLetter = false;
+            }
+            interactible = null;
         }
     }
 }
