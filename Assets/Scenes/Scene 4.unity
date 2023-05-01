@@ -880,7 +880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322455483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.000015735626, y: 0.011329889, z: -10}
+  m_LocalPosition: {x: -0.000015735626, y: 0.011331558, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -929,6 +929,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2549800516557209219, guid: 17157290bcfec0743b06d32a33e5bf79, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4742979489791676423, guid: 17157290bcfec0743b06d32a33e5bf79, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1161,6 +1165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482191000}
   - component: {fileID: 1482191001}
+  - component: {fileID: 1482191002}
   m_Layer: 0
   m_Name: assetsespelho
   m_TagString: Untagged
@@ -1223,7 +1228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 25ed81d0f5810e941a14711bb8ac15ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1235,6 +1240,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1482191002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482190999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054e7bd24d414e94480d38ed73520b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1605125623
 GameObject:
   m_ObjectHideFlags: 0

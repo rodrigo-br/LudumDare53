@@ -12,14 +12,20 @@ public class AreaExit : MonoBehaviour
     {
         if (!isStair && other.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(targetScene);
-            SceneManagment.Instance.SetTransitionName(sceneTransitionName);
+            Transition();
         }
     }
 
     public void Transition()
     {
-        SceneManager.LoadScene(targetScene);
         SceneManagment.Instance.SetTransitionName(sceneTransitionName);
+        FadeScreen.Instance.FadeToBlack();
+        StartCoroutine(LoadSceneRoutine());
+    }
+
+    IEnumerator LoadSceneRoutine()
+    {
+        yield return new WaitForSecondsRealtime(1f / FadeScreen.Instance.GetFadeSpeed());
+        SceneManager.LoadScene(targetScene);
     }
 }

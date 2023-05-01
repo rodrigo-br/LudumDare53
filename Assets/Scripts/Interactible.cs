@@ -50,7 +50,6 @@ public class Interactible : MonoBehaviour
     {
         if (letterManager.SetLetterSO(letter, lettersRead >= index))
         {
-            Debug.Log("Interagiu");
             return true;
         }
         return false;

@@ -110,7 +110,6 @@ public class PlayerMovement : Singleton<PlayerMovement>
         }
         else if (other.tag == "Stair")
         {
-            Debug.Log("IsOnStair");
             isOnStair = true;
             stairExit = other.GetComponent<AreaExit>();
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.ParticleSystemJobs;
 
 public class Yuki : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class Yuki : MonoBehaviour
     Rigidbody2D         myRigidBody;
     int                 numberOfLetters = 5;
     SpriteRenderer      mySpriteRenderer;
+    ParticleSystem      myParticleSystem;
 
     void Awake()
     {
@@ -20,6 +21,7 @@ public class Yuki : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myRigidBody = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        myParticleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
     void Start()
@@ -33,7 +35,7 @@ public class Yuki : MonoBehaviour
                 mySpriteRenderer.enabled = true;
                 myAnimator.SetBool("isJumping", true);
                 myAnimator.SetTrigger("ON");
-
+                myParticleSystem.Play();
             }
         }
         else
@@ -47,6 +49,10 @@ public class Yuki : MonoBehaviour
         if (isChasing)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed);
+            if (Vector2.Distance(transform.position, player.transform.position) < 2)
+            {
+                SceneManager.LoadScene("Scene 6");
+            }
         }
     }
 
@@ -80,6 +86,7 @@ public class Yuki : MonoBehaviour
 
     void TookTheLastLetter()
     {
+        myParticleSystem.Play();
         if (mySpriteRenderer && mySpriteRenderer.enabled == false)
         {
             mySpriteRenderer.enabled = true;

@@ -10,6 +10,7 @@ public class AreaEntrance : MonoBehaviour
     {
         if (sceneTransitionName == SceneManagment.Instance.SceneTransitionName)
         {
+            FadeScreen.Instance.FadeToClear();
             FindObjectOfType<PlayerMovement>().transform.position = transform.position;
             CameraController.Instance.SetPlayerCameraFollow();
         }
