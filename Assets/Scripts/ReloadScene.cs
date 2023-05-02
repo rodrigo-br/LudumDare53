@@ -5,6 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
+    void Start()
+    {
+        BaseSingleton baseSingleton = FindObjectOfType<BaseSingleton>();
+        if (baseSingleton != null)
+        {
+            foreach (Transform child in baseSingleton.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Destroy(baseSingleton.gameObject);
+        }
+    }
+
     void FixedUpdate()
     {
         if (Input.anyKeyDown)
@@ -15,12 +28,6 @@ public class ReloadScene : MonoBehaviour
 
     void RestartGame() 
     {
-        BaseSingleton baseSingleton = FindObjectOfType<BaseSingleton>();
-        foreach (Transform child in baseSingleton.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-        Destroy(baseSingleton.gameObject);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Scene 1");
     }
 }

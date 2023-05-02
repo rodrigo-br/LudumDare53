@@ -26,7 +26,7 @@ public class YukiFlash : MonoBehaviour
     {
         if (Random.Range(0, 2000) % 1999 == 0)
         {
-            AudioSource.PlayClipAtPoint(whisper, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(whisper, Camera.main.transform.position, 0.3f);
             StartCoroutine(FlashingCoroutine());
         }
     }

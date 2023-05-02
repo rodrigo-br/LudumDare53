@@ -46,7 +46,7 @@ public class Yuki : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isChasing)
+        if (isChasing && !player.GetIsReadingLetter())
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed);
             if (Vector2.Distance(transform.position, player.transform.position) < 2)
@@ -56,9 +56,20 @@ public class Yuki : MonoBehaviour
         }
     }
 
-    public void SetChasing()
+    public void SetChasingFalse()
     {
-        isChasing = !isChasing;
+        if (isChasing)
+        {
+            isChasing = false;
+        }
+    }
+
+    public void SetChasingTrue()
+    {
+        if (!isChasing)
+        {
+            isChasing = true;
+        }
     }
 
     public void SetGravity()
@@ -78,7 +89,7 @@ public class Yuki : MonoBehaviour
 
     void CheckIndex()
     {
-        if (player.GetLettersRead() >= numberOfLetters)
+        if (player.GetLettersRead() >= numberOfLetters && !isChasing)
         {
             TookTheLastLetter();
         }

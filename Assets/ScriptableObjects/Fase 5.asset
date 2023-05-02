@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fase 5
   m_EditorClassIdentifier: 
   BGLetter: {fileID: 21300000, guid: 55f2bdc26351a8f41a590c0d101ec077, type: 3}
-  textLetter: "Voc\xEA desvendou a verdade sobre a fam\xEDlia e agora deve ajud\xE1-los
-    a encontrar a paz. H\xE1 algo no s\xF3t\xE3o que voc\xEA deve ver, algo que pode
-    ajud\xE1-lo a desvendar o \xFAltimo mist\xE9rio."
+  textLetter: You are about to discover the final truth, but be careful. Decide whether
+    you will hand over your fate to someone who can give it its proper ending, or
+    run out of the house before it is too late.

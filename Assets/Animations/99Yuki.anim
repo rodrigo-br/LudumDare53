@@ -971,14 +971,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.2
-    functionName: SetChasing
+    functionName: SetChasingTrue
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 8.866667
-    functionName: SetChasing
+    functionName: SetChasingFalse
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -992,7 +992,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 10.033334
-    functionName: SetChasing
+    functionName: SetChasingTrue
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

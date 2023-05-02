@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Interactible : MonoBehaviour
 {
@@ -21,6 +22,15 @@ public class Interactible : MonoBehaviour
     void Start()
     {
         FindIndex();
+    }
+
+    void FixedUpdate()
+    {
+        if (SceneManager.GetActiveScene().name == "Scene 1" && player.GetLettersRead() >= 5 && index != 5)
+        {
+            FindObjectOfType<Interactible>(true).gameObject.SetActive(true);
+            Destroy(gameObject);
+        }
     }
 
     void OnEnable()
@@ -62,6 +72,9 @@ public class Interactible : MonoBehaviour
 
     public void StopReading()
     {
-        letterManager.gameObject.SetActive(false);
+        if (letterManager && letterManager.gameObject)
+        {
+            letterManager.gameObject.SetActive(false);
+        }
     }
 }

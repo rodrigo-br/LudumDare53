@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : Singleton<PlayerMovement>
 {
@@ -16,7 +17,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
     Vector2                 moveInput;
     float                   defaultMoveSpeed;
     float                   defaultAnimationSpeed;
-    [SerializeField] Interactible            interactible;
+    [SerializeField] Interactible interactible;
     bool                    isReadingLetter = false;
     bool                    isFlipped = false;
     bool                    isOnStair = false;
@@ -88,6 +89,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
                 {
                     lettersRead++;
                     OnReadLetter();
+                    TestFinalScene();
                 }
             }
         }
@@ -130,5 +132,25 @@ public class PlayerMovement : Singleton<PlayerMovement>
             }
             interactible = null;
         }
+    }
+
+    void TestFinalScene()
+    {
+        if (lettersRead == 6)
+        {
+            FadeScreen.Instance.FadeToBlack();
+            StartCoroutine(LoadSceneRoutine());
+        }
+    }
+
+    IEnumerator LoadSceneRoutine()
+    {
+        yield return new WaitForSecondsRealtime(2f / FadeScreen.Instance.GetFadeSpeed());
+        SceneManager.LoadScene("Scene 7");
+    }
+
+    public bool GetIsReadingLetter()
+    {
+        return isReadingLetter;
     }
 }
